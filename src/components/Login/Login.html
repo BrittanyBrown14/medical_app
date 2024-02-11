@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
+        <link rel="stylesheet" href="./Login.css">
+
+        <script>
+            function togglePwd() {
+                var x = document.getElementById("password");
+                var show = document.getElementById("showEye");
+                var hide = document.getElementById("hideEye");
+
+                if (x.type === "password") {
+                    x.type = "text";
+                    show.style.display = "none";
+                    hide.style.display = "inline";
+                } else {
+                    x.type = "password";
+                    show.style.display = "inline";
+                    hide.style.display = "none";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Login</h1>
+        <div class="nomember--text">
+            <h2>Don't have an account?</h2>
+            <h2 class="text--signup">Sign Up</h2>            
+        </div>
+
+        <form>
+            <div style="margin: auto;">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" placeholder="Enter your email"><br>                
+            </div>
+
+            <div class="input--section">
+                <label for="password">Password:</label><br>
+                <div class="password">            
+                    <input type="password" id="password" placeholder="Enter your password">
+
+                    <a id="showEye" class="form--eye">
+                        <img src="../images/showEye.svg" alt="test"  onclick="togglePwd()">
+                    </a>
+                    <a id="hideEye" class="form--eye">
+                        <img src="../images/hideEye.svg" alt="test"  onclick="togglePwd()">
+                    </a>                
+                </div>
+            </div>
+            
+            <div class="input--section">
+                <label for="password-conf">Confirm Password:</label><br>
+                <div class="password">            
+                    <input type="password" id="password-conf" placeholder="Enter your password">
+
+                    <a id="showEye" class="form--eye">
+                        <img src="../images/showEye.svg" alt="test"  onclick="togglePwd()">
+                    </a>
+                    <a id="hideEye" class="form--eye">
+                        <img src="../images/hideEye.svg" alt="test"  onclick="togglePwd()">
+                    </a>                
+                </div>
+            </div>
+
+            <div class="nomember--text">
+                <h2 class="text--forget">Forget Password?</h2>            
+            </div>
+
+            <div class="button">
+                <button class="button--reset">Reset</button>
+                <button class="button--login">Login</button>                
+            </div>
+
+        </form>
+    </body>
+</html>

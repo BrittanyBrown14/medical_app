@@ -1,0 +1,109 @@
+body{
+    font-family: Rubik, Poppins, Arial, Helvetica;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+body > h1{
+    font-weight: 900;
+    margin-bottom: -0.25em;
+}
+label{
+    font-weight: 600;
+    font-size:large;
+}
+
+select{
+    height: 2.6em;
+    width: 20.6em;
+    border-radius: 10px;
+    background-color: rgb(163, 130, 245, 0.3);
+    border-color: #A382F5;  
+    border-width: 2px;
+}
+
+
+input{
+    height: 2em;
+    width: 20em;
+    border-radius: 10px;
+    background-color: rgb(163, 130, 245, 0.3);
+    border-color: #A382F5;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+
+.button{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1.5em;
+}
+
+.button--reset{
+    height: 3em;
+    width: 100%;
+    border: none;
+    border-radius: 100px;
+    background-color:#BC2323;
+    font-weight: 900;
+    color: #F4F4F4;
+    font-size: larger;
+}
+
+.button--signup{
+    height: 3em;
+    width: 100%;
+    margin-left: 0.5em;
+    border: none;
+    border-radius: 100px;
+    background-color:#A382F5;
+    font-weight: 900;
+    color: #F4F4F4;
+    font-size: larger;
+}
+.member--text{
+    display:flex;
+    font-weight: 100;
+}
+
+.text--login{
+    color: #218FFE;
+    text-decoration: underline;
+    padding-left: 0.5em;
+}
+
+.password{
+    display: flex;
+    width: 100%;
+}
+
+.input--section{
+    margin: auto;
+    margin-top: 1em;
+}
+
+#hideEye{
+    display: none;
+    position:relative;
+    top: 0.5em;
+    right: 2.25em;
+}
+
+#showEye{
+    position:relative;
+    top: 0.5em;
+    right: 2.25em;
+    margin-right: -2.25em;
+}
+
+
+

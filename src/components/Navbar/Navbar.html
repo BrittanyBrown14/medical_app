@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./Navbar.css">
+
+
+        <script>
+            function toggleMenu() {
+                var x = document.getElementById("navbar");
+                if (x.style.display === "none") {
+                x.style.display = "block";
+                } else {
+                x.style.display = "none";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button id="signup">Sign up</button>
+        <button id="login">Login</button>
+        <nav>
+            <a class="icon--menu">
+                <img src="../images/menu.svg" alt="test"  onclick="toggleMenu()">                
+            </a>
+
+            <ul id="navbar" class="navbar">
+                <li>Home</li>
+                <li>Appointments</li>
+                <li>Health Blog</li>
+                <li>Reviews</li>            
+            </ul>
+        </nav>
+    </body>
+</html>

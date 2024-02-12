@@ -1,4 +1,4 @@
-body{
+.login--main{
     font-family: Rubik, Poppins, Arial, Helvetica;
     margin: auto;
     display: flex;
@@ -7,34 +7,24 @@ body{
     align-items: center;
 }
 
-body > h1{
+.login--main > h1{
     font-weight: 900;
     margin-bottom: -0.25em;
 }
-label{
+.login--label{
     font-weight: 600;
     font-size:large;
 }
 
-select{
-    height: 2.6em;
-    width: 20.6em;
-    border-radius: 10px;
-    background-color: rgb(163, 130, 245, 0.3);
-    border-color: #A382F5;  
-    border-width: 2px;
-}
-
-
-input{
-    height: 2em;
-    width: 20em;
+.login--input{
+    height: 3em;
+    width: 25em;
     border-radius: 10px;
     background-color: rgb(163, 130, 245, 0.3);
     border-color: #A382F5;
 }
 
-form{
+.login--form{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,8 +32,9 @@ form{
     margin: auto;
 }
 
-.button{
+.login--button{
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding-top: 1.5em;
 }
@@ -83,7 +74,7 @@ form{
 
 .text--forget{
     color: #218FFE;
-    padding-top: 0.5em;
+    padding-top: 1em;
     margin: auto;
 }
 
@@ -94,6 +85,7 @@ form{
 
 .input--section{
     margin: auto;
+    margin-left: 0em;
     margin-top: 1em;
 }
 
@@ -102,9 +94,25 @@ form{
     position:relative;
     top: 0.5em;
     right: 2.25em;
+    margin-right: -2.25em;
 }
 
 #showEye{
+    position:relative;
+    top: 0.5em;
+    right: 2.25em;
+    margin-right: -2.25em;
+}
+
+#hideEyeConf{
+    display: none;
+    position:relative;
+    top: 0.5em;
+    right: 2.25em;
+    margin-right: -2.25em;
+}
+
+#showEyeConf{
     position:relative;
     top: 0.5em;
     right: 2.25em;

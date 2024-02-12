@@ -2,12 +2,15 @@ import './SignUp.css'
 import show from '/workspaces/medical_app/src/images/showEye.svg'
 import hide from '/workspaces/medical_app/src/images/hideEye.svg'
 import { useState } from 'react'
+import { Link, Outlet } from 'react-router-dom';
 import Validation from '../../FormValidation'
 
 function SignUp(){
 
 const form = document.getElementById('form--main');
 const [showPassword, setShowPassword] = useState(false);
+const [showPasswordConf, setShowPasswordConf] = useState(false);
+
 
 function resetForm() {
     form.reset();
@@ -26,13 +29,27 @@ const handleClickShowPassword = () => {
     {!showPassword ? show.style.display='inline' : show.style.display='none'}
 };
 
+const handleClickShowPasswordConf = () => {
+    const pwd = document.getElementById("password-conf");
+    const showImgConf = document.getElementById("showEyeConf");
+    const hideImgConf = document.getElementById("hideEyeConf");
+
+    setShowPasswordConf(!showPasswordConf);
+    {showPasswordConf ? pwd.type = 'text' : pwd.type = 'password'}
+    {showPasswordConf ? hideImgConf.style.display='inline' : hideImgConf.style.display='none'}
+    {!showPasswordConf ? showImgConf.style.display='inline' : showImgConf.style.display='none'}
+};
+
     return(
         <section className='signup--main'>
             <h1>Sign Up</h1>
 
             <div className="member--text">
                 <h2>Already a member?</h2>
-                <h2 className="text--login">Login</h2>            
+                <Link to={'/Login'}> 
+                        <h2 className="text--login">Login</h2>
+                </Link> 
+                <Outlet/>    
             </div>
 
             <form className='form--main' id='form--main'>
@@ -79,6 +96,25 @@ const handleClickShowPassword = () => {
                         </a>                
                     </div>
                     <p className='form--error' id='error--pwd'>Please enter your password</p>                
+                    <p className='form--error' id='error--pwd-valid'>Please enter a stronger password. <br/>
+                                                                    It must contain 8 characters and an <br/>
+                                                                    uppercase character.</p>                
+                </div>
+
+                <div className="input--section">
+                    <label htmlFor="password-conf" className='form--label'>Confirm Password:</label><br/>
+                    <div className="password">            
+                        <input type="password" name='user--pwd-conf' className='form--input' id="password-conf" placeholder="Enter your password" onBlur={Validation}/>
+
+                        <a id="showEyeConf" className="form--eye">
+                            <img src={show} alt="test"  onClick={handleClickShowPasswordConf}/>
+                        </a>
+                        <a id="hideEyeConf" className="form--eye">
+                            <img src={hide} alt="test"  onClick={handleClickShowPasswordConf}/>
+                        </a>                
+                    </div>
+                    <p className='form--error' id='error--pwd-conf'>Please confirm your password</p>
+                    <p className='form--error' id='error--pwd-conf-match'>Passwords don't match</p>
                 </div>
 
                 <div className="form--button">

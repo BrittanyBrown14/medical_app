@@ -1,0 +1,79 @@
+import './Login.css'
+import show from '/workspaces/medical_app/src/images/showEye.svg'
+import hide from '/workspaces/medical_app/src/images/hideEye.svg'
+import { useState } from 'react'
+import { Link, Outlet } from 'react-router-dom';
+import Validation from '../../FormValidation'
+
+function Login()
+{
+    const form = document.getElementById('form--main');
+    const [showPassword, setShowPassword] = useState(false);
+ 
+    function resetForm() {
+        form.reset();
+        document.getElementsByClassName('form--error').style.display = 'none';
+    }
+
+    const handleClickShowPassword = () => {
+        const pwd = document.getElementById("password");
+        const showImg = document.getElementById("showEye");
+        const hideImg = document.getElementById("hideEye");
+
+        setShowPassword(!showPassword);
+        {showPassword ? pwd.type = 'text' : pwd.type = 'password'}
+        {showPassword ? hideImg.style.display='inline' : hideImg.style.display='none'}
+        {!showPassword ? showImg.style.display='inline' : showImg.style.display='none'}
+    };
+
+
+    return(
+        <section className='login--main'>
+            <h1>Login</h1>
+            <div className="nomember--text">
+                <h2>Don't have an account?</h2>
+                <Link to={'/SignUp'}> 
+                    <h2 className="text--signup">Sign Up</h2>    
+                </Link>
+                <Outlet/> 
+                            
+            </div>
+
+            <form className='login--form'>
+                <div className="input--section">
+                    <label htmlFor="email" className='login--label'>Email:</label><br/>
+                    <input type="email" name='login--email' className='login--input' id="email" placeholder="Enter your email" onBlur={Validation}/><br/> 
+                    <p className='form--error' id='error--email'>Please enter your email address</p>  
+                    <p className='form--error' id='error--email-valid'>Please enter a valid email address</p>                 
+                </div>
+
+                <div className="input--section">
+                    <label htmlFor="password" className='login--label'>Password:</label><br/>
+                    <div className="password">            
+                        <input type="password" name='login--pwd' className='login--input' id="password" placeholder="Enter your password" onBlur={Validation}/>
+
+                        <a id="showEye" className="form--eye">
+                            <img src={show} alt="test"  onClick={handleClickShowPassword}/>
+                        </a>
+                        <a id="hideEye" className="form--eye">
+                            <img src={hide} alt="test"  onClick={handleClickShowPassword}/>
+                        </a>                
+                    </div>
+                    <p className='form--error' id='error--pwd'>Please enter your password</p>
+                </div>
+
+                <div className="nomember--text">
+                    <h2 className="text--forget">Forget Password?</h2>            
+                </div>
+
+                <div className="login--button">
+                    <button className="button--reset" onClick={resetForm}>Reset</button>
+                    <button className="button--login">Login</button>                
+                </div>
+
+            </form>
+        </section>
+    )
+}
+
+export default Login;

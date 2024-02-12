@@ -19,8 +19,9 @@ function Navbar() {
                     <Link to={'/SignUp'}> 
                         <button className='button' id="signup">Sign up</button>
                     </Link>
-                    
-                    <button className='button' id="login" >Login</button>              
+                    <Link to={'/Login'}> 
+                        <button className='button' id="login" >Login</button>  
+                    </Link>                    
                 </div>
                 <Outlet/>
             </nav>

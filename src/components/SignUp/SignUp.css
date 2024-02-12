@@ -1,4 +1,4 @@
-body{
+.signup--main{
     font-family: Rubik, Poppins, Arial, Helvetica;
     margin: auto;
     display: flex;
@@ -7,18 +7,18 @@ body{
     align-items: center;
 }
 
-body > h1{
+.signup--main > h1{
     font-weight: 900;
     margin-bottom: -0.25em;
 }
-label{
+.form--label{
     font-weight: 600;
     font-size:large;
 }
 
-select{
-    height: 2.6em;
-    width: 20.6em;
+.form--select{
+    height: 3em;
+    width: 25em;
     border-radius: 10px;
     background-color: rgb(163, 130, 245, 0.3);
     border-color: #A382F5;  
@@ -26,15 +26,15 @@ select{
 }
 
 
-input{
-    height: 2em;
-    width: 20em;
+.form--input{
+    height: 3em;
+    width: 25em;
     border-radius: 10px;
     background-color: rgb(163, 130, 245, 0.3);
     border-color: #A382F5;
 }
 
-form{
+.form--main{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,10 +42,16 @@ form{
     margin: auto;
 }
 
-.button{
+.form--button{
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding-top: 1.5em;
+}
+
+.form--error{
+    color: #BC2323;
+    display: none;
 }
 
 .button--reset{
@@ -88,22 +94,22 @@ form{
 
 .input--section{
     margin: auto;
+    margin-left: 0em;
     margin-top: 1em;
 }
 
 #hideEye{
     display: none;
     position:relative;
-    top: 0.5em;
-    right: 2.25em;
+    top: 0.75em;
+    right: 2.25em;    
+    margin-right: -2.25em;
+
 }
 
 #showEye{
     position:relative;
-    top: 0.5em;
+    top: 0.75em;
     right: 2.25em;
     margin-right: -2.25em;
 }
-
-
-

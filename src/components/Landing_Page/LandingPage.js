@@ -1,6 +1,6 @@
 import './LandingPage.css'
 
-const LandingPage = () => {
+function LandingPage() {
 
     return(
         <div>

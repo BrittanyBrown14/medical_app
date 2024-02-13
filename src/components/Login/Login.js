@@ -3,7 +3,7 @@ import show from '/workspaces/medical_app/src/images/showEye.svg'
 import hide from '/workspaces/medical_app/src/images/hideEye.svg'
 import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import Validation from '../../FormValidation'
+import Validation from '../../Utils/FormValidation'
 
 function Login()
 {

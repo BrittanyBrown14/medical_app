@@ -1,9 +1,10 @@
 import './SignUp.css'
 import show from '/workspaces/medical_app/src/images/showEye.svg'
 import hide from '/workspaces/medical_app/src/images/hideEye.svg'
-import { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom';
-import Validation from '../../FormValidation'
+import { useEffect, useState } from 'react'
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Validation from '../../Utils/FormValidation'
+import { API_URL } from '../../config';
 
 function SignUp(){
 
@@ -11,6 +12,12 @@ const form = document.getElementById('form--main');
 const [showPassword, setShowPassword] = useState(false);
 const [showPasswordConf, setShowPasswordConf] = useState(false);
 
+
+const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+const [phone, setPhone] = useState('');
+const [password, setPassword] = useState('');
+const navigate = useNavigate();
 
 function resetForm() {
     form.reset();
@@ -24,9 +31,9 @@ const handleClickShowPassword = () => {
     const hide = document.getElementById("hideEye");
 
     setShowPassword(!showPassword);
-    {showPassword ? pwd.type = 'text' : pwd.type = 'password'}
-    {showPassword ? hide.style.display='inline' : hide.style.display='none'}
-    {!showPassword ? show.style.display='inline' : show.style.display='none'}
+    showPassword ? pwd.type = 'text' : pwd.type = 'password'
+    showPassword ? hide.style.display='inline' : hide.style.display='none'
+    !showPassword ? show.style.display='inline' : show.style.display='none'
 };
 
 const handleClickShowPasswordConf = () => {
@@ -35,11 +42,94 @@ const handleClickShowPasswordConf = () => {
     const hideImgConf = document.getElementById("hideEyeConf");
 
     setShowPasswordConf(!showPasswordConf);
-    {showPasswordConf ? pwd.type = 'text' : pwd.type = 'password'}
-    {showPasswordConf ? hideImgConf.style.display='inline' : hideImgConf.style.display='none'}
-    {!showPasswordConf ? showImgConf.style.display='inline' : showImgConf.style.display='none'}
+    showPasswordConf ? pwd.type = 'text' : pwd.type = 'password'
+    showPasswordConf ? hideImgConf.style.display='inline' : hideImgConf.style.display='none'
+    !showPasswordConf ? showImgConf.style.display='inline' : showImgConf.style.display='none'
 };
 
+/* async function SendData() {
+    useEffect(() => {
+        const register = async (e) => {
+            e.preventDefault();
+            const response = await fetch(`${API_URL}/api/auth/register`, 
+            {
+                method: "POST",
+                headers: 
+                {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: phone,
+                }),
+            });
+            const json = await response.json();
+            setName(json.name)
+        
+        register();
+
+
+            if (json.authtoken) {
+                sessionStorage.setItem("auth-token", json.authtoken);
+                sessionStorage.setItem("name", name);
+                // phone and email
+                sessionStorage.setItem("phone", phone);
+                sessionStorage.setItem("email", email);
+                // Redirect to home page
+                navigate("/");   //on directing to home page you need to give logic to change login and signup buttons with name of the user and logout button where you have implemented Navbar functionality
+                window.location.reload();
+            } else {
+                if (json.errors) {
+                    for (const error of json.errors) {
+                        console.log(error.msg);
+                    }
+                } else {
+                    console.log(json.error);
+                }
+            }
+        };
+    }, []);  
+} */
+
+const register = async (e) => {
+    e.preventDefault();
+    // API Call
+    const response = await fetch(`${API_URL}/api/auth/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            phone: phone,
+        }),
+    });
+    const json = await response.json();
+
+    if (json.authtoken) {
+        sessionStorage.setItem("auth-token", json.authtoken);
+        sessionStorage.setItem("name", name);
+        // phone and email
+        sessionStorage.setItem("phone", phone);
+        sessionStorage.setItem("email", email);
+        // Redirect to home page
+        navigate("/");   //on directing to home page you need to give logic to change login and signup buttons with name of the user and logout button where you have implemented Navbar functionality
+        window.location.reload();
+    } else {
+        if (json.errors) {
+            for (const error of json.errors) {
+                console.log(error.msg);
+            }
+        } else {
+            console.log(json.error);
+        }
+    }
+};
     return(
         <section className='signup--main'>
             <h1>Sign Up</h1>
@@ -52,7 +142,7 @@ const handleClickShowPasswordConf = () => {
                 <Outlet/>    
             </div>
 
-            <form className='form--main' id='form--main'>
+            <form className='form--main' id='form--main' method='POST' onSubmit={register}>
                 <div className="input--section">
                     <label htmlFor="role" className='form--label'>Role</label><br/>
                     <select name='user--select' id="role" className='form--select' onBlur={Validation}>
@@ -78,7 +168,8 @@ const handleClickShowPasswordConf = () => {
 
                 <div className="input--section">
                     <label htmlFor="email" className='form--label'>Email:</label><br/>
-                    <input type="email" name='user--email' id="email" className='form--input' placeholder="Enter your email" onBlur={Validation}/><br/> 
+                    <input value={email} type="email" name='user--email' id="email" className='form--input' placeholder="Enter your email" 
+                            onBlur={Validation} onChange={(e) => setEmail(e.target.value)}/><br/> 
                     <p className='form--error' id='error--email'>Please enter your email address</p>  
                     <p className='form--error' id='error--email-valid'>Please enter a valid email address</p>                              
                 </div>

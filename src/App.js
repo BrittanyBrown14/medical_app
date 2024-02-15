@@ -4,9 +4,9 @@ import LandingPage from './components/Landing_Page/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import InstantConsultation from './components/Instant_Consultation/InstantConsultation';
-import DoctorCardIC from './components/DoctorCardIC/DoctorCardIC';
-import FindDoctorSearchIC from './components/FindDoctorSearchIC/FindDoctorSearchIC';
-import AppointmentFormIC from './components/AppointmentFormIC/AppointmentFormIC';
+import DoctorCard from './components/DoctorCard/DoctorCard';
+import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
+import AppointmentForm from './components/AppointmentForm/AppointmentForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 

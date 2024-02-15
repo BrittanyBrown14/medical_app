@@ -8,91 +8,92 @@ import { API_URL } from '../../config';
 
 function SignUp(){
 
-const form = document.getElementById('form--main');
-const [showPassword, setShowPassword] = useState(false);
-const [showPasswordConf, setShowPasswordConf] = useState(false);
+    const form = document.getElementById('form--main');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordConf, setShowPasswordConf] = useState(false);
 
-const [role, setRole] = useState('');
-const [name, setName] = useState('');
-const [email, setEmail] = useState('');
-const [phone, setPhone] = useState('');
-const [password, setPassword] = useState('');
+    const [role, setRole] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-function resetForm() {
-    form.reset();
-    document.getElementsByClassName('form--error').style.display = 'none';
-}
+    function resetForm() {
+        form.reset();
+        document.getElementsByClassName('form--error').style.display = 'none';
+    }
 
-const handleClickShowPassword = () => {
+    const handleClickShowPassword = () => {
 
-    const pwd = document.getElementById("password");
-    const show = document.getElementById("showEye");
-    const hide = document.getElementById("hideEye");
+        const pwd = document.getElementById("password");
+        const show = document.getElementById("showEye");
+        const hide = document.getElementById("hideEye");
 
-    setShowPassword(!showPassword);
-    showPassword ? pwd.type = 'text' : pwd.type = 'password'
-    showPassword ? hide.style.display='inline' : hide.style.display='none'
-    !showPassword ? show.style.display='inline' : show.style.display='none'
-};
+        setShowPassword(!showPassword);
+        showPassword ? pwd.type = 'text' : pwd.type = 'password'
+        showPassword ? hide.style.display='inline' : hide.style.display='none'
+        !showPassword ? show.style.display='inline' : show.style.display='none'
+    };
 
-const handleClickShowPasswordConf = () => {
-    const pwd = document.getElementById("password-conf");
-    const showImgConf = document.getElementById("showEyeConf");
-    const hideImgConf = document.getElementById("hideEyeConf");
+    const handleClickShowPasswordConf = () => {
+        const pwd = document.getElementById("password-conf");
+        const showImgConf = document.getElementById("showEyeConf");
+        const hideImgConf = document.getElementById("hideEyeConf");
 
-    setShowPasswordConf(!showPasswordConf);
-    showPasswordConf ? pwd.type = 'text' : pwd.type = 'password'
-    showPasswordConf ? hideImgConf.style.display='inline' : hideImgConf.style.display='none'
-    !showPasswordConf ? showImgConf.style.display='inline' : showImgConf.style.display='none'
-};
+        setShowPasswordConf(!showPasswordConf);
+        showPasswordConf ? pwd.type = 'text' : pwd.type = 'password'
+        showPasswordConf ? hideImgConf.style.display='inline' : hideImgConf.style.display='none'
+        !showPasswordConf ? showImgConf.style.display='inline' : showImgConf.style.display='none'
+    };
 
-const register = async (e) => {
-  
-    e.preventDefault();
-    // API Call
-    const response = await fetch(`${API_URL}/api/auth/register`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            role:role,
-            name: name,
-            email: email,
-            password: password,
-            phone: phone,
-        }),
-    });
-    const json = await response.json();
+    const register = async (e) => {
+    
+        e.preventDefault();
+        // API Call
+        const response = await fetch(`${API_URL}/api/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                role:role,
+                name: name,
+                email: email,
+                password: password,
+                phone: phone,
+            }),
+        });
+        const json = await response.json();
 
-    if (json.authtoken) {
-        sessionStorage.setItem("auth-token", json.authtoken);
-        sessionStorage.setItem("name", name);
-        sessionStorage.setItem("role", role);
-        // phone and email
-        sessionStorage.setItem("phone", phone);
-        sessionStorage.setItem("email", email);
-        // Redirect to home page
-        navigate("/");   //on directing to home page you need to give logic to change login and signup buttons with name of the 
-                        //user and logout button where you have implemented Navbar functionality
-        window.location.reload();
-    } else {
-        var x = document.getElementById("error--text");
-        if (json.errors) {
-            for (const error of json.errors) {
-                console.log(error.msg); 
-            }
+        if (json.authtoken) {
+            sessionStorage.setItem("auth-token", json.authtoken);
+            sessionStorage.setItem("name", name);
+            sessionStorage.setItem("role", role);
+            // phone and email
+            sessionStorage.setItem("phone", phone);
+            sessionStorage.setItem("email", email);
+            // Redirect to home page
+            navigate("/");   //on directing to home page you need to give logic to change login and signup buttons with name of the 
+                            //user and logout button where you have implemented Navbar functionality
+            window.location.reload();
         } else {
-            console.log(json.error);
-            json.error.forEach(err => {
-                let errMsg = "<p>" + err.msg + "</p>";              
-                x.insertAdjacentHTML("afterbegin", errMsg)     
-            });
-        }
-    }  
-};
+            var x = document.getElementById("error--text");
+            if (json.errors) {
+                for (const error of json.errors) {
+                    console.log(error.msg); 
+                }
+            } else {
+                console.log(json.error);
+                json.error.forEach(err => {
+                    let errMsg = "<p>" + err.msg + "</p>";              
+                    x.insertAdjacentHTML("afterbegin", errMsg)     
+                });
+            }
+        }  
+    };
+    
     return(
         <section className='signup--main'>
             <h1>Sign Up</h1>

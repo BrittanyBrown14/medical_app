@@ -54,7 +54,9 @@ function Navbar() {
                     <Link to={'/'}>
                         <li className='navbar--list-item'>Home</li>
                     </Link>
-                    <li>Appointments</li>
+                    <Link to={'/instant-consultation'}>
+                        <li className='navbar--list-item'>Appointments</li>
+                    </Link>
                     <li>Health Blog</li>
                     <li>Reviews</li>            
                 </ul>

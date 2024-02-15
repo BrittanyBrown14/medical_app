@@ -1,7 +1,50 @@
+import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
+    const [click, setClick] = useState(false);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState("");
+    const [email, setEmail]=useState("");
+    const [showDropdown, setShowDropdown] = useState(false);
+    const handleClick = () => setClick(!click);
+
+    
+    const handleLogout = () => {
+        sessionStorage.removeItem("auth-token");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("phone");
+        // remove email phone
+        localStorage.removeItem("doctorData");
+        setIsLoggedIn(false);
+        // setUsername("");
+       
+        // Remove the reviewFormData from local storage
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith("reviewFormData_")) {
+            localStorage.removeItem(key);
+          }
+        }
+        setEmail('');
+        window.location.reload();
+    }
+    const handleDropdown = () => {
+      setShowDropdown(!showDropdown);
+    }
+    useEffect(() => { 
+      const storedName = sessionStorage.getItem("name");
+
+      if (storedName) {
+            setIsLoggedIn(true);
+            setUsername(storedName);
+          }
+        }, []);
+
+
     return(
         <div className='navi'>
             <nav>
@@ -16,12 +59,25 @@ function Navbar() {
                 </ul>
 
                 <div className='container--button'>
-                    <Link to={'/SignUp'}> 
-                        <button className='button' id="signup">Sign up</button>
-                    </Link>
-                    <Link to={'/Login'}> 
-                        <button className='button' id="login" >Login</button>  
-                    </Link>                    
+                    
+                    {isLoggedIn?(
+                        <>
+                            <p className='name--logged-in'>Welcome, {username}</p>
+                            <Link to={'/'}>
+                            <button className='button' id="logout" onClick={handleLogout}>Log Out</button>  
+                            </Link>
+                            
+                        </>
+                        ) : (
+                            <>
+                                <Link to={'/SignUp'}> 
+                                    <button className='button' id="signup">Sign up</button>
+                                </Link>
+                                <Link to={'/Login'}> 
+                                    <button className='button' id="login" >Login</button>  
+                                </Link>  
+                            </>
+                        )}         
                 </div>
                 <Outlet/>
             </nav>

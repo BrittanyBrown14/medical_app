@@ -29,6 +29,7 @@ nav{
 .container--button{
     display: flex;
     margin-right: 2em;
+    align-items: baseline;
 
 } 
 .icon--menu{
@@ -52,4 +53,13 @@ nav{
 .navbar--list-item{
     padding: 1em;
     font-size: 2em;
+}
+
+.name--logged-in{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#logout{
+    margin-left: 1em;
 }

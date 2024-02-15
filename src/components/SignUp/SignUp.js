@@ -1,6 +1,6 @@
 import './SignUp.css'
-import show from '/workspaces/medical_app/src/images/showEye.svg'
-import hide from '/workspaces/medical_app/src/images/hideEye.svg'
+import show from '../../images/showEye.svg'
+import hide from '../../images/hideEye.svg'
 import { useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Validation from '../../Utils/FormValidation'

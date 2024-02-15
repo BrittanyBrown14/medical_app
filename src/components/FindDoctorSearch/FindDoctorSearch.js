@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './FindDoctorSearch.css';
-import searchIcon from '/workspaces/medical_app/src/images/searchicon.svg'
+import searchIcon from '../../images/searchicon.svg'
 import { useNavigate, Navigate } from 'react-router-dom';
 
 

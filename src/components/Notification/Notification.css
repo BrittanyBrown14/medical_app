@@ -1,0 +1,19 @@
+.appointment-card{
+    width: 20%;
+    margin-left: 4em;
+    position: absolute;
+    border-radius: 15px;
+    background-color: #A382F5;
+    top: 15%;
+    padding: 1em;
+    color: black;
+}
+
+.appointment-card__content > h3{
+    text-align: center;
+}
+
+.appointment-card__button{
+    background-color:  rgb(33, 143, 254);
+    border-radius: 100px;
+}

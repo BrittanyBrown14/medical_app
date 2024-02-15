@@ -50,7 +50,7 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
 
         <div className="form-group">
           <label htmlFor="time">Appointment Time:</label>
-          <select htmlFr="time"
+          <select
             onChange={(e) => setSelectedSlot(e.target.value)}
             required
             >

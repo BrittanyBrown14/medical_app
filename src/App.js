@@ -7,6 +7,7 @@ import InstantConsultation from './components/Instant_Consultation/InstantConsul
 import DoctorCard from './components/DoctorCard/DoctorCard';
 import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
 import AppointmentForm from './components/AppointmentForm/AppointmentForm';
+import Notification from './components/Notification/Notification';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -15,14 +16,14 @@ function App() {
     <div className="App">
 
         <BrowserRouter>
-          <Navbar/>
-              <Routes>
-                <Route path="/" element={<LandingPage/>}/>
-                <Route path="/SignUp" element={<SignUp/>}/>
-                <Route path='/Login' element={<Login/>}/>
-                <Route path="/instant-consultation" element={<InstantConsultation />}/>
-              </Routes>
-            
+            <Notification>
+                <Routes>
+                  <Route path="/" element={<LandingPage/>}/>
+                  <Route path="/SignUp" element={<SignUp/>}/>
+                  <Route path='/Login' element={<Login/>}/>
+                  <Route path="/instant-consultation" element={<InstantConsultation />}/>
+                </Routes>
+            </Notification>
         </BrowserRouter>
 
     </div>

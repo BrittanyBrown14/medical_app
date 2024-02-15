@@ -98,6 +98,14 @@
     margin-top: 1em;
 }
 
+.error--text{
+    color: red;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 400;
+}
+
 #hideEye{
     display: none;
     position:relative;

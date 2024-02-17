@@ -58,7 +58,9 @@ function Navbar() {
                         <li className='navbar--list-item'>Appointments</li>
                     </Link>
                     <li>Health Blog</li>
-                    <li>Reviews</li>            
+                    <Link to={'/Reviews'}>
+                        <li className='navbar--list-item'>Reviews</li>
+                    </Link>        
                 </ul>
 
                 <div className='container--button'>

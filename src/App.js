@@ -8,6 +8,7 @@ import DoctorCard from './components/DoctorCard/DoctorCard';
 import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
 import AppointmentForm from './components/AppointmentForm/AppointmentForm';
 import Notification from './components/Notification/Notification';
+import ReviewForm from './components/ReviewForm/ReviewForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
                   <Route path="/SignUp" element={<SignUp/>}/>
                   <Route path='/Login' element={<Login/>}/>
                   <Route path="/instant-consultation" element={<InstantConsultation />}/>
+                  <Route path='/Reviews' element={<ReviewForm/>}/>
                 </Routes>
             </Notification>
         </BrowserRouter>

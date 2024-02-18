@@ -10,7 +10,7 @@
     margin-bottom: 1em;
     margin-top: 0.5em;
     font-size: larger;
-    padding: 0em;;
+    padding: 0em;
 }
 
 nav{
@@ -55,9 +55,41 @@ nav{
     font-size: 2em;
 }
 
+.navbar--list-item:hover{
+    box-shadow: inset 0px 8px 16px 1px rgb(33, 143, 254, 0.5);
+    border-radius: 70px;
+
+}
+
 .name--logged-in{
     font-size: 1.5em;
     font-weight: 600;
+}
+.navbar--welcome-loginout{
+    margin-top: 2em;
+}
+
+.dropdown {
+    display: block;
+    width: 10.5%;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 0.5em;
+}
+.dropdown-content {
+    font-size: 1.3em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+.dropdown-content:hover {
+    font-size: 1.3em;
+    border-radius: 10px;
+    background-color: rgb(33, 143, 254, 0.5)
 }
 
 #logout{

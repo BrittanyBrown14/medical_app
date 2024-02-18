@@ -40,7 +40,7 @@ passport.deserializeUser(function (id, cb) {
 router.post('/register',[
     body('name', "Your name should be at least 4 characters.").isLength({ min: 4 }),
     body('phone', "Phone Number Should Be 10 Digits.").isLength({ min: 10 }),
-    body('email', "Please Enter a Vaild Email").isEmail(),
+    body('email', "Please Enter a Valid Email").isEmail(),
     body('password', "Password Should Be At Least 8 Characters.").isLength({ min: 8 }),
 ], async (req, res) => {
 
@@ -63,7 +63,8 @@ router.post('/register',[
             name: req.body.name,
             password: hash,
             phone: req.body.phone,
-            createdAt: Date(),
+            role: req.body.role,
+            createdAt: Date()
         });
 
         const payload = {
@@ -82,7 +83,7 @@ router.post('/register',[
 });
 
 router.post('/login', [
-    body('email', "Please Enter a Vaild Email").isEmail(),
+    body('email', "Please Enter a Valid Email").isEmail(),
 ], async (req, res) => {
 
     const errors = validationResult(req);

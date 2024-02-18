@@ -9,7 +9,6 @@ function Navbar() {
     const [username, setUsername] = useState("");
     const [email, setEmail]=useState("");
     const [showDropdown, setShowDropdown] = useState(false);
-    const handleClick = () => setClick(!click);
 
     
     const handleLogout = () => {
@@ -34,6 +33,7 @@ function Navbar() {
     }
     const handleDropdown = () => {
       setShowDropdown(!showDropdown);
+      
     }
     useEffect(() => { 
       const storedEmail = sessionStorage.getItem("email");
@@ -44,7 +44,6 @@ function Navbar() {
             setUsername(storedName);
           }
         }, []);
-
 
     return(
         <div className='navi'>
@@ -67,9 +66,24 @@ function Navbar() {
                     
                     {isLoggedIn?(
                         <>
-                            <p className='name--logged-in'>Welcome, {username}</p>
+                        <div className='navbar--welcome-loginout' onMouseEnter={handleDropdown} onMouseLeave={handleDropdown}>
+                            <p className='name--logged-in'  >Welcome, {username}</p>
+                            {showDropdown ? 
+                                <div id="dropdown" className="dropdown">
+                                    <Link to={'Profile'}>
+                                        <p className="dropdown-content" >Your Profile</p>
+                                    </Link>
+                                    <Link to={'Profile'}>
+                                        <p className="dropdown-content" >Your Reports</p>
+                                    </Link>
+                                </div>
+
+                            :null}
+                            
+                        </div>
+                            
                             <Link to={'/'}>
-                            <button className='button' id="logout" onClick={handleLogout}>Log Out</button>  
+                                <button className='button' id="logout" onClick={handleLogout}>Log Out</button>  
                             </Link>
                             
                         </>

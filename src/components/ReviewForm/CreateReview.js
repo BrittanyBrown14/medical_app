@@ -10,7 +10,6 @@ function CreateReview({id_number, onReviewSubmit, reviewContent})
     const [formName, setName] = useState('');
     const [formContent, setContent] = useState('');
     const [formRating, setRating] = useState('');
-    const [formId, setFormId] = useState('');
     const [submittedMessage, setSubmittedMessage] = useState('');
     const [reviewInfo, setReviewInfo] = useState({
         name: '',
@@ -31,24 +30,13 @@ function CreateReview({id_number, onReviewSubmit, reviewContent})
       localStorage.setItem(`reviewFormSno_${JSON.stringify(id_number.id_number)}`, JSON.stringify(reviewInfo));
       setSubmittedMessage(reviewInfo);
           if (reviewInfo.name && reviewInfo.reviewContent && reviewInfo.rating > 0) {
-            
-            onReviewSubmit(id_number, reviewInfo.reviewContent);
-            
             setShowWarning(false);
             setSubmit(true);
             setReviewGiven(true);
+            onReviewSubmit(id_number, reviewInfo.reviewContent);
           } else {
             setShowWarning(true);
           }
-
-/*         if (reviewInfo.name && reviewInfo.reviewContent && reviewInfo.rating > 0) {
-        localStorage.setItem(`reviewFormData_${id_number}`, JSON.stringify(reviewInfo));
-        onSubmit(id_number, reviewInfo.reviewContent); // Pass the review to the parent component
-        setSubmit(true);
-        setShowWarning(false);
-      } else {
-        setShowWarning(true);
-      } */
     };
 
     if (submit) {

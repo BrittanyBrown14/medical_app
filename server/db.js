@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const mongoURI =  "mongodb+srv://brittany:dTmJ3D4CDFnoHN0I@cluster0.probofv.mongodb.net/";
+const mongoURI =  "mongodb+srv://brittany:uQUPF4AFxzfXXLTO@cluster0.probofv.mongodb.net/";
 const connectToMongo = async (retryCount) => {
     mongoose.set('strictQuery',true);
     const MAX_RETRIES = 3;
     const count = retryCount ?? 0;
     try {
-        await mongoose.connect(mongoURI, { dbName: 'medical_db'});
+         await mongoose.connect(mongoURI, { dbName: 'medical_db'});
         console.info('Connected to Mongo Successfully')
 
         return;

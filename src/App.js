@@ -1,14 +1,11 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/Landing_Page/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import InstantConsultation from './components/Instant_Consultation/InstantConsultation';
-import DoctorCard from './components/DoctorCard/DoctorCard';
-import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
-import AppointmentForm from './components/AppointmentForm/AppointmentForm';
 import Notification from './components/Notification/Notification';
 import ReviewForm from './components/ReviewForm/ReviewForm';
+import ProfileForm from './components/ProfileCard/ProfileCard';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -24,6 +21,7 @@ function App() {
                   <Route path='/Login' element={<Login/>}/>
                   <Route path="/instant-consultation" element={<InstantConsultation />}/>
                   <Route path='/Reviews' element={<ReviewForm/>}/>
+                  <Route path='/Profile' element={<ProfileForm/>}/>
                 </Routes>
             </Notification>
         </BrowserRouter>

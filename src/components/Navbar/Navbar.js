@@ -70,10 +70,10 @@ function Navbar() {
                             <p className='name--logged-in'  >Welcome, {username}</p>
                             {showDropdown ? 
                                 <div id="dropdown" className="dropdown">
-                                    <Link to={'Profile'}>
+                                    <Link to={'/Profile'}>
                                         <p className="dropdown-content" >Your Profile</p>
                                     </Link>
-                                    <Link to={'Profile'}>
+                                    <Link to={'/Reports'}>
                                         <p className="dropdown-content" >Your Reports</p>
                                     </Link>
                                 </div>

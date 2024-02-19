@@ -7,10 +7,6 @@ const ProfileForm = () => {
     const [userDetails, setUserDetails] = useState({});
     const [updatedDetails, setUpdatedDetails] = useState({});
     const [editMode, setEditMode] = useState(false);
-
-    const [profileName, setprofileName] = useState('');
-    const [profileEmail, setprofileEmail] = useState('');
-    const [profilePhone, setprofilePhone] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -60,14 +56,6 @@ const ProfileForm = () => {
         [e.target.name]: e.target.value,
         });
     };
-/*     const handleInputChange = (e) => {
-        setUpdatedDetails({
-            ...updatedDetails,
-            [e.target.name]: profileName,
-            [e.target.email]: profileEmail,
-            [e.target.phone]: profilePhone,
-        });
-    }; */
     const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -89,12 +77,14 @@ const ProfileForm = () => {
             headers: {
             "Authorization": `Bearer ${authtoken}`,
             "Content-Type": "application/json",
-            "Email": email,
-            "Name": name,
-            "Phone": phone,
+            "email": email,
+            "name": name,
+            "phone": phone,
             },
             body: JSON.stringify(payload),
         });
+        
+            const json = await response.json();
 
             if (response.ok) {
                 // Update the user details in session storage
@@ -108,8 +98,22 @@ const ProfileForm = () => {
                 navigate("/");
             } else {
                 // Handle error case
+                var x = document.getElementById("error--text");
+                if (json.errors) {
+                    for (const error of json.errors) {
+                        console.log(error.msg); 
+                    }
+                } else {
+                    console.log(json.error);
+                    json.error.forEach(err => {
+                        let errMsg = "<p>" + err.msg + "</p>";              
+                        x.insertAdjacentHTML("afterbegin", errMsg)     
+                    });
+                }
+                alert(`Profile could not be updated`);
+                console.log(Error);
                 throw new Error("Failed to update profile");
-                console.log(Error)
+
             }
         } 
         catch (error) {
@@ -123,6 +127,9 @@ const ProfileForm = () => {
         <div className="profile-container">
             {editMode ? (
                 <form className="profile--edit" onSubmit={handleSubmit}>
+                                <div className='error--text' id='error--text'>
+            
+            </div>
                     <label>
                     Name:
                     <input className="profile--items"
@@ -138,7 +145,6 @@ const ProfileForm = () => {
                         name="email"
                         placeholder={userDetails.email}
                         onChange={handleInputChange}
-                        // onBlur={(e) => setprofileEmail(e.target.value)}
                     />
   
                     Phone:
@@ -147,7 +153,6 @@ const ProfileForm = () => {
                         name="phone"
                         placeholder={userDetails.phone}
                         onChange={handleInputChange}
-                        // onBlur={(e) => setprofilePhone(e.target.value)}
                     />                       
                                      
                     </label>
@@ -156,6 +161,7 @@ const ProfileForm = () => {
             ) : (
             <div className="profile--main">
                 <h1>Welcome {userDetails.name}</h1>
+                <h2>Role: {userDetails.role}</h2>
                 <h2>Phone Number: {userDetails.phone}</h2>
                 <h2>Email Address: {userDetails.email}</h2>
                 <button className="profile--button" onClick={handleEdit}>Edit</button>

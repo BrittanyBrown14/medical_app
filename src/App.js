@@ -6,6 +6,7 @@ import InstantConsultation from './components/Instant_Consultation/InstantConsul
 import Notification from './components/Notification/Notification';
 import ReviewForm from './components/ReviewForm/ReviewForm';
 import ProfileForm from './components/ProfileCard/ProfileCard';
+import ReportsLayout from './components/ReportsLayout/ReportsLayout';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
                   <Route path="/instant-consultation" element={<InstantConsultation />}/>
                   <Route path='/Reviews' element={<ReviewForm/>}/>
                   <Route path='/Profile' element={<ProfileForm/>}/>
+                  <Route path='/Reports' element={<ReportsLayout/>}/>
                 </Routes>
             </Notification>
         </BrowserRouter>

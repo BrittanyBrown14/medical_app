@@ -191,6 +191,7 @@ router.get('/user', async (req, res) => {
 router.put('/user', [
     body('name', "Username should be at least 4 characters").isLength({ min: 4 }),
     body('phone', "Phone number should be 10 digits").isLength({ min: 10 }),
+    body('email', "Please Enter a Valid Email").isEmail(),
     ], async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
